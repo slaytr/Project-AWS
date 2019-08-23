@@ -1,0 +1,22 @@
+IAM offers
+Centralized control of AWS account
+Shared Access to your AWS account
+Granular Permissions
+Identity Federation (Facebook, LinkedIn, etc)
+Multifactor Authentication
+Provide temporay access for users/devices and services when necessary
+Allows you to set up password rotation policy
+Integrates with other AWS services
+Supports PCI DSS Compliance (Taking Credit Card Details)
+
+Terminology
+
+Users - End users
+Group - Collection of users, inherits permissions of Group
+Policies - JSON notation, gives permissions to User/Group/Role
+Role - Assign to AWS Resource
+
+IAM is always Global/Universal
+The root account is the account created when you first set up your AWS account, has complete admin Access
+New users have NO permissions by default
+New users are assigned Access Key ID and Secret Access Keys when first created. These are used for AWS access via API and CLI. Viewed once.

@@ -1,0 +1,5 @@
+69 Availability Zones within 22 Geographic Regions - 2019
+
+Edge Locations are endpoints for AWS which are used for caching content
+eg. CloudFront, CDN
+150+ Edge Locations
