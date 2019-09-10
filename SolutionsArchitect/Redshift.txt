@@ -1,0 +1,58 @@
+Amazon Redshift - fast and powerful, fully managed, petabyte-scale data warehouse service in the cloud
+
+
+$0.25 per hour with no commitments or up front costs
+
+scale to $1,000 per terabyte per year
+
+### Online Analytics Processing
+
+Example: 
+- net profit of all ecommerce packages across all regions
+Pulls in large numbers of records
+
+More Examples:
+- The mean, median and modes of average times to upgrade a site, across all sites in NZ
+- The average retention period of a paying customer in each region
+
+Data Warehousing databases use different tpye of architecture from a database perspective and infrastructure layer
+
+Redshift Configurations
+- Single Node (160Gb)
+- Multi-Node
+	- Leader Node (Manages client connections, receives queries)
+	- Compute Node (Stores data, performs queries and computations) 128 MAX
+
+Redshift uses Advanced Compression
+
+Columnar data stores can be compressed much more than row-based data stores because similar data is stored sequentially on disk
+Doesn't require indexes or materialized views, so uses less space than traditional RDS.
+Automatically samples data and selects a compression scheme
+
+Massively Parallel Processing (MPP)
+Automatically distributes data and query load across all nodes
+	- Maintain fast query performance as data warehouse grows
+
+Backups
+- Enabled by default - 1 day retention period
+- Max retention 35 days
+- Redshift always attempts to maintain at least three copies of your data (Original, Replica on Compute Nodes, Backup in S3)
+- Can async replicate snapshots to S3 in another region for disaster recovery
+
+Priced on:
+- Compute Node Hours - 1 unit per node per hour
+- Leader Node Hours - Not charged
+- Backup - Charged
+- Data Transfer inside a VPC - Charged
+
+Security
+- Encrypted in Transit (SSL)
+- Encrypted at rest using (AES-256)
+- Redshift takes care of key management by default
+	- Manage own keys through HSM
+	- AWS KMS
+
+Redshift Availability
+- 1 AZ
+- Can restore snapshots to new AZ
+- Used for Business Intelligence
