@@ -1,0 +1,20 @@
+Dynamo DB
+- SSD Storage
+- Spread across 3 Geographically distinct data centres
+- Eventually Consistent Reads (Default) 1s+
+- Strongly Consistent Reads
+
+Aurora
+- 2 copies of data in each availability zone (min 3 zones) eg. min 6 copies 
+- Aurora Snapshots can be shared with other AWS accounts
+- 2 replicas available: Aurora Replicas and MySQL Replicas
+- Automated Failover only with Aurora
+- Automated backups on by default
+
+- 15 Replicas
+- Asyn (ms)
+- Automated Failover
+
+Elasticache - use to increase db and web app performance
+- Memcached
+- Redis (Multi AZ) back ups and restores
