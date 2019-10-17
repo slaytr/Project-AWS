@@ -1,9 +1,0 @@
-Outputs:
-  URL:
-    Value: !Join 
-      - ''
-      - - 'http://'
-        - !GetAtt 
-          - WebServerInstance
-          - PublicIp
-    Description: Newly created application URL

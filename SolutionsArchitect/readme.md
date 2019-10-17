@@ -28,4 +28,3 @@ $150 USD Exam Registration Fee
 ### Week 5 - HA Architecture
 ### Week 6 - Applications + Serverless
 ### Week 7 - Review + Exam
-
