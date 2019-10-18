@@ -1,0 +1,14 @@
+Lambda
+Dynamo
+API Gateway
+
+---
+Why we use APIs
+API Gateway
+Architecture
+Prereq
+Build API
+
+CloudWatch to periodically trigger Lambda to retrieve a Joke from an external service
+Store in DynamoDB
+Build API Gateway from DynamoDB
