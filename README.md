@@ -1,22 +1,27 @@
-## Project Amazon Web Services
+# Amazon Web Services Repo
 
 ![aws certified](assets/aws-certified-logo_color-horz_360x60.png)
 
-Start Date: 02/09/2019
+## Info
 
-![aws saa-certified](assets/solutions-architect-associate-tag_360x32.png) AWS Solutions Architect Associate Passed: 17/10/2019
+This repository contains a collection of notes used in the preparation for AWS cloud computing certifications.
 
-This repository is a collection of my online notes and a record of my journey as I begin to pursue the highest level of Cloud Computing qualifications with Amazon Web Services.
 
-My current target is to achieve the <b>Solutions Architect Professional</b> level.
+## Status
 
-My current pathway:
+| Start | Last Updated |
+|-------| ------------ |
+| 02/09/2019 | 20/05/2021 |
 
-1) ~~Solutions Architect Associate~~  | <b>Date:</b> 17/10/19
+## Records
 
-2) Developer Associate
+| Qualification | Achieved | 
+|---------------|------|
+| Solutions Architect Associate | 17/10/2019 |
+| Developer Associate | |
+| SysOps Administrator | |
+| Solutions Architect Professional | |
 
-3) SysOps Associate
+## Badges
 
-4) Solution Architect Professional
-
+![aws saa-certified](assets/solutions-architect-associate-tag_360x32.png) 
