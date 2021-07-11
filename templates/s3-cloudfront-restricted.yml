@@ -1,0 +1,81 @@
+service: s3-cloudfront-restricted
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  region: ap-southeast-2
+  runtime: nodejs14.x
+  profile: default
+
+package:
+  exclude:
+    - README.md
+    - package.json
+    - package-lock.json
+
+resources:
+  Resources:
+    # Creates a Bucket where the files can be stored
+    ExampleSourceBucket:
+      Type: AWS::S3::Bucket
+      DeletionPolicy: Retain
+      Properties:
+        AccessControl: PublicRead
+        BucketName: <Bucket Name>
+    # Creates a Bucket Policy to apply to the above bucket and as we are restricting direct access to the bucket
+    # it is necessary to have a policy giving the CloudFront Distribution sufficient access rights to the contents
+    ExampleSourceBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: !Ref ExampleSourceBucket
+        PolicyDocument:
+          Statement:
+            - Action:
+                - s3:GetObject
+              Effect: Allow
+              Principal:
+                AWS:
+                  Fn::Sub:
+                    - arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${ExampleCloudFrontOriginAccessIdentityID}
+                    - ExampleCloudFrontOriginAccessIdentityID:
+                        Ref: ExampleCloudFrontOriginAccessIdentity
+              Resource:
+                Fn::Sub:
+                  - ${ExampleBucketArn}/*
+                  - ExampleBucketArn:
+                      Fn::GetAtt: [ ExampleSourceBucket, Arn ]
+    # Creates a CloudFront distribution that will be used to access S3 Bucket contents
+    ExampleCloudFront:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Comment: This CloudFront Distribution serves S3 Bucket contents
+          Origins:
+            - DomainName:
+                Fn::GetAtt: [ ExampleSourceBucket, DomainName ]
+              Id: ExampleCloudFrontOriginID
+              S3OriginConfig:
+                OriginAccessIdentity:
+                  Fn::Sub:
+                    - origin-access-identity/cloudfront/${ExampleCloudFrontOriginAccessIdentityID}
+                    - ExampleCloudFrontOriginAccessIdentityID:
+                        Ref: ExampleCloudFrontOriginAccessIdentity
+          Enabled: true
+          ViewerCertificate:
+            CloudFrontDefaultCertificate: true
+          DefaultCacheBehavior:
+            AllowedMethods:
+              - GET
+              - HEAD
+            TargetOriginId: ExampleCloudFrontOriginID
+            ForwardedValues:
+              QueryString: 'false'
+              Cookies:
+                Forward: none
+            ViewerProtocolPolicy: allow-all
+    # Creates a IAM identity that is used by the CloudFront distribution to access contents within S3
+    CloudFrontOriginAccessIdentity:
+      Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+      Properties:
+        CloudFrontOriginAccessIdentityConfig:
+          Comment: This CloudFront Origin Access Identity used to access the S3 Bucket <Name>
